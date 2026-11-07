@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>LOYD BOT</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080808;color:#fff;
+ font-family:Arial,sans-serif;
+}
+header{
+ background:#111;padding:22px 18px;
+ border-bottom:1px solid #c9a227;
+}
+.logo{color:#e4bd48;font-size:27px;font-weight:bold}
+header p{color:#aaa;font-size:12px}
+nav{
+ display:flex;overflow-x:auto;background:#151515;
+ position:sticky;top:0;z-index:2;
+}
+nav button{
+ background:none;border:0;color:#aaa;
+ padding:15px 13px;white-space:nowrap;
+}
+nav button.active{color:#e4bd48;border-bottom:2px solid #e4bd48}
+main{padding:16px;max-width:850px;margin:auto}
+section{display:none}
+section.active{display:block}
+h2{color:#e4bd48}
+.card{
+ background:#151515;border:1px solid #393224;
+ border-radius:12px;padding:17px;margin:14px 0;
+}
+.label{color:#aaa;font-size:12px}
+.value{font-size:23px;font-weight:bold;margin-top:8px}
+.gold{color:#e4bd48}
+.muted{color:#999;font-size:13px;line-height:1.6}
+button.action{
+ background:#d6ad35;color:#080808;
+ border:0;border-radius:8px;padding:13px;
+ font-weight:bold;width:100%;margin-top:12px;
+}
+select{
+ width:100%;padding:13px;background:#222;
+ color:white;border:1px solid #806b31;
+ border-radius:7px;margin:9px 0 15px;
+}
+.event{border-left:3px solid #d6ad35;padding:10px 13px;margin:14px 0;background:#202020}
+footer{text-align:center;color:#777;padding:30px;font-size:12px}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">LOYD BOT ⚜</div>
+ <p>FOREX INTELLIGENCE & EA MANAGEMENT</p>
+ <span class="gold">● SYSTEM PROTOTYPE</span>
+</header>
+
+<nav>
+ <button class="active" onclick="showTab('home',this)">Home</button>
+ <button onclick="showTab('scanner',this)">Scanner</button>
+ <button onclick="showTab('events',this)">Events</button>
+ <button onclick="showTab('signals',this)">Signals</button>
+ <button onclick="showTab('manage',this)">Bot Manager</button>
+ <button onclick="showTab('premium',this)">Pricing</button>
+</nav>
+
+<main>
+
+<section id="home" class="active">
+ <h2>Welcome to LOYD BOT</h2>
+ <div class="card">
+  <div class="label">BOT STATUS</div>
+  <div class="value gold">DEMO MODE</div>
+  <p class="muted">Your trading dashboard prototype is ready. No live MT5 connection is active.</p>
+ </div>
+ <div class="card">
+  <div class="label">SUPPORTED MARKETS</div>
+  <div class="value">Forex · Gold · Indices</div>
+  <p class="muted">Multiple market watchlist.</p>
+ </div>
+ <div class="card">
+  <div class="label">SUBSCRIPTION PLAN</div>
+  <div class="value gold">$10 / MONTH</div>
+  <p class="muted">Proposed LOYD BOT Basic plan.</p>
+ </div>
+</section>
+
+<section id="scanner">
+ <h2>Chart Scanner</h2>
+ <div class="card">
+  <p class="label">SELECT MARKET</p>
+  <select id="symbol">
+   <option>XAUUSD - GOLD</option>
+   <option>EURUSD</option>
+   <option>GBPUSD</option>
+   <option>USDJPY</option>
+   <option>AUDUSD</option>
+   <option>USDCAD</option>
+  </select>
+  <p class="label">TIMEFRAME</p>
+  <select id="tf">
+   <option>M5</option>
+   <option>M15</option>
+   <option>H1</option>
+   <option>H4</option>
+   <option>D1</option>
+  </select>
+  <button class="action" onclick="scan()">SCAN CHART</button>
+  <div id="scanResult" class="card">
+   <div class="value gold">WAITING</div>
+   <p class="muted">Select a market and scan. Live price data is not connected.</p>
+  </div>
+ </div>
+</section>
+
+<section id="events">
+ <h2>Economic Calendar</h2>
+ <div class="card">
+  <p class="muted">High-impact economic events. Confirm dates and release times with an official economic calendar.</p>
+  <div class="event">
+   <b>NFP</b><br>
+   <span class="muted">US employment report · Date/time to verify</span>
+  </div>
+  <div class="event">
+   <b>CPI</b><br>
+   <span class="muted">Consumer inflation · Date/time to verify</span>
+  </div>
+  <div class="event">
+   <b>PPI</b><br>
+   <span class="muted">Producer inflation · Date/time to verify</span>
+  </div>
+  <div class="event">
+   <b>FOMC</b><br>
+   <span class="muted">Federal Reserve decision · Date/time to verify</span>
+  </div>
+ </div>
+</section>
+
+<section id="signals">
+ <h2>Signals Centre</h2>
+ <div class="card">
+  <div class="value gold">DEMO SIGNALS</div>
+  <p class="muted">This section is ready for a verified market-data connection. No real BUY or SELL recommendations are generated.</p>
+  <p>Market: Not connected</p>
+  <p>Direction: Waiting for data</p>
+  <p>Take Profit: Not available</p>
+  <p>Stop Loss: Not available</p>
+ </div>
+</section>
+
+<section id="manage">
+ <h2>EA Bot Manager</h2>
+ <div class="card">
+  <div class="value gold">MT5 CONNECTION</div>
+  <p class="muted">Not connected</p>
+  <p>Account: Not connected</p>
+  <p>EA status: Offline</p>
+  <p>Auto trading: Disabled</p>
+  <p class="muted">Android MT5 does not directly host desktop Expert Advisors. A secure server-side bridge would be needed for remote EA management.</p>
+ </div>
+</section>
+
+<section id="premium">
+ <h2>LOYD BOT Premium</h2>
+ <div class="card">
+  <div class="label">MONTHLY SUBSCRIPTION</div>
+  <div class="value gold" style="font-size:38px">$10</div>
+  <p>LOYD BOT BASIC</p>
+  <p>✓ Chart scanner interface</p>
+  <p>✓ Economic calendar</p>
+  <p>✓ Signals dashboard</p>
+  <p>✓ EA management dashboard</p>
+  <button class="action" onclick="alert('Payment checkout is not connected yet. No payment has been taken.')">SUBSCRIBE - COMING SOON</button>
+  <p class="muted">Checkout is not connected. No subscription is activated by this button.</p>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ LOYD BOT © 2026<br>
+ Trade responsibly. Prototype only.
+</footer>
+
+<script>
+function showTab(id,button){
+ document.querySelectorAll('main section').forEach(s=>s.classList.remove('active'));
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ button.classList.add('active');
+}
+function scan(){
+ let symbol=document.getElementById('symbol').value;
+ let tf=document.getElementById('tf').value;
+ document.getElementById('scanResult').innerHTML=
+ '<div class="value gold">WAIT · DEMO ONLY</div>'+
+ '<p>Market: '+symbol+'</p>'+
+ '<p>Timeframe: '+tf+'</p>'+
+ '<p class="muted">No live chart candles are connected. No trading decision can be made from this demonstration.</p>';
+}
+</script>
+
+</body>
+</html>
